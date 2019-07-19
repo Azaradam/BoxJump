@@ -27,8 +27,8 @@ public class SpawnManager : MonoBehaviour
 
     IEnumerator SpeedUp()
     {
-        yield return new WaitForSeconds(5);
-        speed = speed + 0.5f;
+        yield return new WaitForSeconds(10);
+        speed = speed + 0.2f;
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {

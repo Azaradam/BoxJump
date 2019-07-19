@@ -13,6 +13,8 @@ public class ScoreController : MonoBehaviour
     private void Start()
     {
         score = 0;
+
+        if (scoreText != null) 
         InvokeRepeating("ScoreAdd", 0, 1);
 
         if(highScore != null)

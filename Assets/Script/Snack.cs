@@ -15,4 +15,14 @@ public class Snack : MonoBehaviour
         }
         
     }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Magnet"))
+        {
+            float step = 2 * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, other.transform.position, step);
+        }
+    }
+
+
 }

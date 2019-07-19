@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
+
     private bool isGround;
+
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
@@ -40,16 +42,17 @@ public class PlayerController : MonoBehaviour
         {
             extraJumps = extraJumpsValue;
         }
-        Debug.Log("JUMP");
-        if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps > 0)
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            rb.velocity = Vector2.up * jumpForce;
-            extraJumps--;
+            JumpButton();
         }
-        else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGround == true)
+
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            rb.velocity = Vector2.up * jumpForce;
+            DownButton();
         }
+
 
 
     }
@@ -57,7 +60,6 @@ public class PlayerController : MonoBehaviour
     public void JumpButton()
     {
 
-        Debug.Log("JUMP");
         if (extraJumps > 0)
         {
             rb.velocity = Vector2.up * jumpForce;
