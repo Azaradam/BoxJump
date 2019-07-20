@@ -5,12 +5,16 @@ using UnityEngine;
 public class Snack : MonoBehaviour
 {
 
+    public GameObject Particle;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
             var manager = GameObject.Find("SpawnManager").GetComponent<ScoreController>();
             manager.ScoreUp(5);
+            var part = Instantiate(Particle, other.transform.position, Quaternion.identity);
+            Destroy(part, 2);
             Destroy(gameObject);
         }
         

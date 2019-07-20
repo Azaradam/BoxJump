@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed;
-    public float jumpForce;
-    private float moveInput;
-
-    private Rigidbody2D rb;
+    [Space]
+    public float jumpForce; //Besar gaya lompat.
 
 
-    private bool isGround;
+    private float moveInput; //Input tombol.
+    private Rigidbody2D rb; //Rigidbody player
 
+
+    private bool isGround; //Bool Check is grounded atau enggak.
+    [Space]
     public Transform groundCheck;
     public float checkRadius;
-    public LayerMask whatIsGround;
+    public LayerMask whatIsGround; //Layermask Ground
 
-    private int extraJumps;
-    public int extraJumpsValue;
+
+
+    private int extraJumps; //Sisa lompatan
+    public int extraJumpsValue; //Banyak lompatan maksimal 
+
 
     public GameObject deathPart, gameOverUI;
-
     public Animation cameraa;
+    public AudioSource Jump,slide;
+
 
     private void Start()
     {
@@ -34,6 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         isGround = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
     }
+
 
     private void Update()
     {
@@ -53,21 +59,20 @@ public class PlayerController : MonoBehaviour
             DownButton();
         }
 
-
-
     }
 
     public void JumpButton()
     {
-
         if (extraJumps > 0)
         {
             rb.velocity = Vector2.up * jumpForce;
             extraJumps--;
+            Jump.Play();
         }
         else if (extraJumps == 0 && isGround == true)
         {
             rb.velocity = Vector2.up * jumpForce;
+            Jump.Play();
         }
     }
 
@@ -76,6 +81,7 @@ public class PlayerController : MonoBehaviour
         if (isGround != true)
         {
             rb.velocity = Vector2.down * jumpForce;
+            slide.Play();
         }
     }
 
